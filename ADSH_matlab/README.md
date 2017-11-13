@@ -10,10 +10,14 @@ Matlab 2016
 ### 2. Datasets
 We use three datasets to perform our experiments, i.e., CIFAR-10, MS-COCO and NUS-WIDE. You can preprocess these datasets by yourself or download from the following links:
 
-[CIFAR-10 MAT File]()
+[CIFAR-10 MAT File](http://pan.baidu.com/s/1miMgd7q)
 
 [MS-COCO MAT File]()
 
 [NUS-WIDE MAT File]()
+
+In addition, pretrained model can be download from the following links:
+
+[VGG-F](http://pan.baidu.com/s/1slhusrF)
 
 
