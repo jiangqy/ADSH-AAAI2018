@@ -1,5 +1,11 @@
 function ADSH_demo()
+%% before you running this code, please change direct to matconvnet and run setup.m to setup MatConvNet.
+% As this is an old version of MatConvNet (and image-net-vgg-f.mat), if you
+% complie a new version, please download correpsonding pretrained
+% image-net-vgg-f.mat, and maybe you need rewrite update_net function by
+% yourself.
 addpath(fullfile('utils'));
+runtime = 1;
 dataname = 'CIFAR-10';
 
 %% load dataset
@@ -16,11 +22,14 @@ param.batchSize = 64;
 
 %% hypper-parameters, please cross-validate the following params if you use
 % these code for new datasets.
-param.lr = logspace(-4, -6, param.outIter * param.maxIter);
 param.outIter = 50;
 param.maxIter = 3;
-param.gamma = 100;
-param.numSample = 1000;
+param.gamma = 200;
+param.numSample = 2000;
+param.lr = logspace(-4, -6, param.outIter * param.maxIter);
+% % for NUS-WIDE dataset, please use the following learning rate
+% param.lr = logspace(-4.5, -6, param.outIter * param.maxIter);
+
 if strcmp(dataname, 'NUS-WIDE')
     param.topk = 5000;
 end
@@ -36,7 +45,7 @@ for i = 1: nb
     else fprintf('[Dataset: %s][Method: %s][MAP: %3.3f]', ...
             dataname, param.method, result.map);
     end
-    save(['log/ADSH_' dataname '_' int2str(param.bit) '_' datestr(now) '.mat'], 'result')
+    save(['log/ADSH_' dataname '_' int2str(param.bit) '_' int2str(runtime) '.mat'], 'result')
 end
 end
 

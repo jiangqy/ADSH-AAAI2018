@@ -19,23 +19,29 @@ maxIter = param.maxIter;
 net = load('./data/imagenet-vgg-f.mat');
 net = net_structure(net, bit);
 
-Bd = zeros(numDatabase, bit);
+V = zeros(numDatabase, bit);
 
 loss = [];
 imap = [];
 
+train_time = 0.0;
+
 for iter = 1: outIter
+    epoch_time = tic;
+    %%sampling
     Omega = randperm(numDatabase, Sc);
     sampleLabel = trainLabel(Omega, :);
     
+    %%soft-constraint
     sampleS = sampleLabel * trainLabel' > 0;
     r = sum(sampleS(:)) / sum(1 - sampleS(:));
     s1 = 1;
     s0 = s1 * r;
     sampleS = sampleS*(s1 + s0) - s0;
     
-    Bq = randn(Sc, bit);
+    U = randn(Sc, bit);
     SQuery = XTrain(:, :, :, Omega);
+    %%learning deep neural network
     for epoch = 1: maxIter
         ind = (iter - 1)*maxIter + epoch;
         index = randperm(Sc);
@@ -48,39 +54,42 @@ for iter = 1: outIter
             res = vl_simplenn(net, im_);
             z = squeeze(gather(res(end).x))';
             a = tanh(z);
-            bd = Bd(Omega, :);
+            bd = V(Omega, :);
             Sa = sampleS(ix, :);
-            Bq(ix, :) = a;
-            dJda = 2*(a*Bd' - bit*Sa) * Bd + 2 * gamma * (a - bd(ix, :));
+            U(ix, :) = a;
+            dJda = 2*(a*V' - bit*Sa) * V + 2 * gamma * (a - bd(ix, :));
             dJdz = dJda.*(1-a.^2);
             dJdoutput = gpuArray(reshape(dJdz', [1, 1, size(dJdz, 2), size(dJdz, 1)]));
             res = vl_simplenn(net, im_, dJdoutput);
             net = update_net(net, res, lr(ind), numDatabase, batchSize);
         end
     end
-    H = sign(Bq);
+    H = sign(U);
     barH = zeros(numDatabase, bit);
-    barH(Omega, :) = Bq;
+    barH(Omega, :) = U;
     for ii = 1: bit
-        Bd_ = Bd;
-        Bd_(:, ii) = [];
+        V_ = V;
+        V_(:, ii) = [];
         Q = -2 * bit * sampleS' * H - 2 * gamma * barH;
         q = Q(:, ii);
-        H_ = Bq;
+        H_ = U;
         h = H_(:, ii);
         H_(:, ii) = [];
-        Bd(:, ii) = sign(-2 * Bd_ * H_' * h - q);
+        V(:, ii) = sign(-2 * V_ * H_' * h - q);
     end
+    epoch_time = toc(epoch_time);
+    train_time = train_time + epoch_time / 60;
+    %%iteration finishes
     if strcmp(param.dataname, 'NUS-WIDE')
-        fprintf('[Iteration: %3d/%3d]\n', iter, outIter);
+        fprintf('[Iteration: %3d/%3d][Train Time: %.4f (m)]\n', iter, outIter, train_time);
     else
-        l = calcLoss(Bd, Bq, Omega, sampleS, gamma, bit);
+        l = calcLoss(V, U, Omega, sampleS, gamma, bit);
         loss = [loss, l];
-        fprintf('[Iteration: %3d/%3d][Loss: %3.3f]\n', iter, outIter, l);
+        fprintf('[Iteration: %3d/%3d][Loss: %.3f][Train Time: %.4f]\n', iter, outIter, l, train_time);
         if mod(iter, 10) == 0
             qB = encoding(XQuery, net, bit);
             qB = compactbit(qB > 0);
-            rB = compactbit(Bd > 0);
+            rB = compactbit(V > 0);
             Dhamm = hammingDist(qB, rB);
             map_ = callMap(Wtrue, Dhamm);
             imap = [imap, map_];
@@ -92,7 +101,7 @@ end
 %% Evaluation procedure
 qB = encoding(XQuery, net, bit);
 qB = compactbit(qB > 0);
-rB = compactbit(Bd > 0);
+rB = compactbit(V > 0);
 
 if strcmp(param.dataname, 'NUS-WIDE')
     [topkmap] = calculateTopMap(rB, qB, trainLabel, queryLabel, param.topk);
