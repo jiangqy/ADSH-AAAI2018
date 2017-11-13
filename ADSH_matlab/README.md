@@ -20,4 +20,9 @@ In addition, pretrained model can be download from the following links:
 
 [VGG-F](http://pan.baidu.com/s/1slhusrF)
 
-
+### 3. Run demo
+First you need download (or prepross by yourself) coresponding data and pretrained model and put them in the "data" folder. Then complie and run setup.m to configure MatConvNet.
+Then run ADSH_demo().
+```matlab
+ADSH_demo
+```
