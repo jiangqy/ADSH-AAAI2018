@@ -48,13 +48,17 @@ ADSH_demo
     </tr>
 </table>
 #### 4.2. Precision-Recall
+
 ![](./fig/PreRec.png)
 #### 4.3. Training Loss on MS-COCO dataset.
+
 ![](./fig/MS-COCO-loss.png)
 #### 4.4.  Hyper-parameters on MS-COCO dataset.
 ##### 4.4.1. $\gamma$
+
 ![](./fig/MS-COCO-gammas.png)
 ##### 4.4.2. $m$
+
 ![](./fig/MS-COCO-numsamples.png)
 
 
