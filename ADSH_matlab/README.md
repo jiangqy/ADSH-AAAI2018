@@ -49,10 +49,10 @@ ADSH_demo
 </table>
 #### 4.2. Precision-Recall
 
-<img height="250" src="./fig/PreRec.png"/ alt="Precision-Recall on three datasets with 16 bits.">
+<img height="250" src="./fig/PreRec.png" alt="Precision-Recall on three datasets with 16 bits."/>
 #### 4.3. Training Loss on MS-COCO dataset.
 
-<img height="250" src="./fig/MS-COCO-loss.png"/ alt="Training Loss on MS-COCO dataset.">
+<img height="250" src="./fig/MS-COCO-loss.png" alt="Training Loss on MS-COCO dataset."/>
 #### 4.4.  Hyper-parameters on MS-COCO dataset.
 ##### 4.4.1. $\gamma$
 
