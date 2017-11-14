@@ -47,16 +47,20 @@ ADSH_demo
         <td >NUS-WIDE</td ><td > </td> <td > </td><td > </td> <td > </td>
     </tr>
 </table>
+
 #### 4.2. Precision-Recall
 
 <div align=center><img height="250" src="./fig/PreRec.png"/></div>
+
 #### 4.3. Training Loss on MS-COCO dataset.
 
 <div align=center><img height="250" src="./fig/MS-COCO-loss.png" /></div>
+
 #### 4.4.  Hyper-parameters on MS-COCO dataset.
 ##### 4.4.1. $\gamma$
 
 <div align=center><img height="250" src="./fig/MS-COCO-gammas.png"/></div>
+
 ##### 4.4.2. $m$
 
 <div align=center><img height="250" src="./fig/MS-COCO-numsamples.png"/></div>
