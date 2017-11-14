@@ -49,7 +49,7 @@ ADSH_demo
 </table>
 #### 4.2. Precision-Recall
 
-<img width="150" src="./fig/PreRec.png"/>
+<img height="150" src="./fig/PreRec.png"/>
 #### 4.3. Training Loss on MS-COCO dataset.
 
 ![](./fig/MS-COCO-loss.png)
