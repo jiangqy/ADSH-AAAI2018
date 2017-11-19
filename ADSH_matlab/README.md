@@ -23,6 +23,7 @@ In addition, pretrained model can be download from the following links:
 ### 3. Run demo
 First you need download (or prepross by yourself) coresponding data and pretrained model and put them in the "data" folder. Then complie and run setup.m to configure MatConvNet.
 Then run ADSH_demo().
+
 ```matlab
 ADSH_demo
 ```
@@ -38,10 +39,10 @@ ADSH_demo
         <td >12 bits</td><td >24 bits</td> <td >32 bits</td><td >48 bits</td>  
     </tr>
     <tr>
-        <td >CIFAR-10</td ><td >0.8939 </td> <td > 0.9243 </td><td > </td><td > </td>  
+        <td >CIFAR-10</td ><td >0.8939 </td> <td > 0.9243 </td><td > 0.9330</td><td > 0.9426</td>  
     </tr>
     <tr>
-        <td >MS-COCO</td ><td > </td> <td > </td><td > </td> <td > </td>
+        <td >MS-COCO</td ><td >0.8344 </td> <td >0.8601 </td><td >0.8613 </td> <td >0.8612 </td>
     </tr>
     <tr>
         <td >NUS-WIDE</td ><td > </td> <td > </td><td > </td> <td > </td>
