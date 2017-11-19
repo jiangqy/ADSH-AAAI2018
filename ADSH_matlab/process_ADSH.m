@@ -85,7 +85,7 @@ for iter = 1: outIter
     else
         l = calcLoss(V, U, Omega, sampleS, gamma, bit);
         loss = [loss, l];
-        fprintf('[Iteration: %3d/%3d][Loss: %.3f][Train Time: %.4f]\n', iter, outIter, l, train_time);
+        fprintf('[Iteration: %3d/%3d][Loss: %.3f][Train Time: %.4f (m)]\n', iter, outIter, l, train_time);
         if mod(iter, 10) == 0
             qB = encoding(XQuery, net, bit);
             qB = compactbit(qB > 0);

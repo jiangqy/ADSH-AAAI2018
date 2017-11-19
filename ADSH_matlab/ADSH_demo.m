@@ -6,7 +6,7 @@ function ADSH_demo()
 % yourself.
 addpath(fullfile('utils'));
 runtime = 1;
-dataname = 'CIFAR-10';
+dataname = 'NUS-WIDE';
 
 %% load dataset
 [dataset, param] = load_data(dataname);
@@ -32,6 +32,7 @@ param.lr = logspace(-4, -6, param.outIter * param.maxIter);
 
 if strcmp(dataname, 'NUS-WIDE')
     param.topk = 5000;
+    param.lr = logspace(-4.5, -6, param.outIter * param.maxIter);
 end
 
 %% training and evaluation
@@ -40,10 +41,10 @@ for i = 1: nb
     result = process_ADSH(dataset, param);
     
     if isfield(result,'topkmap')
-        fprintf('[Dataset: %s][Method: %s][Top-5000 MAP: %3.3f]', ...
-            dataname, param.method, result.topkmap);
-    else fprintf('[Dataset: %s][Method: %s][MAP: %3.3f]', ...
-            dataname, param.method, result.map);
+        fprintf('[#Bit: %3d][Dataset: %s][Method: %s][Top-5000 MAP: %.4f]\n', ...
+            param.bit, dataname, param.method, result.topkmap);
+    else fprintf('[#Bit: %3d][Dataset: %s][Method: %s][MAP: %.4f]\n', ...
+            param.bit, dataname, param.method, result.map);
     end
     save(['log/ADSH_' dataname '_' int2str(param.bit) '_' int2str(runtime) '.mat'], 'result')
 end
@@ -57,6 +58,7 @@ switch dataname
         load ./data/NUS-WIDE.mat LAll IAll param;
     case 'MS-COCO'
         load ./data/MS-COCO.mat LAll IAll param;
+        param.indexRetrieval = param.indexDatabase;
 end
 dataset.IAll = IAll;
 dataset.LAll = LAll;
