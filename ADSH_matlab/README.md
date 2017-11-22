@@ -45,7 +45,7 @@ ADSH_demo
         <td >MS-COCO</td ><td >0.8344 </td> <td >0.8601 </td><td >0.8613 </td> <td >0.8612 </td>
     </tr>
     <tr>
-        <td >NUS-WIDE</td ><td > </td> <td > </td><td > </td> <td > </td>
+        <td >NUS-WIDE</td ><td >0.8374 </td> <td > 0.8898</td><td > 0.8954</td> <td > 0.9060</td>
     </tr>
 </table>
 
