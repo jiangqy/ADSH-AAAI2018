@@ -20,7 +20,7 @@ python ADSH_CIFAR_10.py
 Mean Average Precision
 <table>
     <tr>
-        <td rowspan="2">PlatForm</td>    
+        <td rowspan="2">Dataset</td>    
         <td colspan="4">Code Length</td>
     </tr>
     <tr>
