@@ -31,7 +31,7 @@ $ python ADSH_NUS-WIDE.py  --gpu '0'
         <td >CIFAR-10</td ><td >0.9473 </td> <td > 0.9636 </td><td > 0.9632</td><td > 0.9605</td>  
     </tr>
     <tr>
-        <td >NUS-WIDE</td ><td > </td> <td > </td><td > </td><td > </td>  
+        <td >NUS-WIDE</td ><td >0.7821  </td> <td >0.8303  </td><td > 0.8314</td><td >0.8366 </td>  
     </tr>
 </table>
 
