@@ -14,7 +14,11 @@ We use three datasets to perform our experiments, i.e., CIFAR-10, MS-COCO and NU
 
 [MS-COCO MAT File](http://pan.baidu.com/s/1dFAPeZv)
 
-[NUS-WIDE MAT File](http://pan.baidu.com/s/1cvwlFw)
+NUS-WIDE MAT File:
+
+link: https://pan.baidu.com/s/1gY6plKKcbpIi42b9GKCR1g 
+
+password: y9rx
 
 In addition, pretrained model can be download from the following links:
 
