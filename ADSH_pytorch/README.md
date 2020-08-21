@@ -49,4 +49,4 @@ $ python ADSH_NUS-WIDE.py  --gpu '0'
     </tr>
 </table>
 
-### 6. Please contact jiangqy@lamda.nju.edu.cn if you have any question.
+### 6. Please contact qyjiang24#gmail.com if you have any question.
