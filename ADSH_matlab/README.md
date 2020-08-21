@@ -71,4 +71,4 @@ ADSH_demo
 <div align=center><img height="250" src="./fig/MS-COCO-numsamples.png"/></div>
 
 
-### 5. Please contact jiangqy@lamda.nju.edu.cn if you have any question.
+### 5. Please contact qyjiang24#gmail.com if you have any question.
